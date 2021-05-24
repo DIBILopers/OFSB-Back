@@ -16,3 +16,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// $router->get('/data', $controller)
+
+$router->group(['prefix' => 'user'], function () use ($router) {
+    $controller = 'Controller@getuserdata';
+
+    $router->get('/data', $controller);
+});
