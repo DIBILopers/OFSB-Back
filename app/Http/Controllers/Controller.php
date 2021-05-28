@@ -18,7 +18,7 @@ class Controller extends BaseController
     public function getuserdata () {
         // $data = DB::table('Users')->get();
         // return $data;
-        $data = Users::all();
-        return $data;
+        $datas = Users::all();
+        return $datas;
     }
 }
