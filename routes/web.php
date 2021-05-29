@@ -25,3 +25,12 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->put    ('/data', 'UserController@update');
     $router->delete('/data/{id}', 'UserController@destroy');
 });
+$router->group(['prefix' => 'matches'], function () use ($router) {
+    
+    $router->get    ('/getdata', 'MatchController@index');
+    // $router->get    ('/data/{id}', 'MatchController@show');
+    $router->post   ('/data', 'MatchController@store');
+    $router->post   ('/generate', 'MatchController@generate');
+    $router->put    ('/data', 'MatchController@update');
+    $router->delete('/data/{id}', 'MatchController@destroy');
+});
