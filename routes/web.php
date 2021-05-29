@@ -17,10 +17,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-// $router->get('/data', $controller)
-
 $router->group(['prefix' => 'user'], function () use ($router) {
-    $controller = 'Controller@getuserdata';
-
-    $router->get('/data', $controller);
+    
+    $router->get    ('/data', 'UserController@index');
+    $router->get    ('/data/{id}', 'UserController@show');
+    $router->post   ('/data', 'UserController@store');
+    $router->put    ('/data', 'UserController@update');
+    $router->delete('/data/{id}', 'UserController@destroy');
 });
