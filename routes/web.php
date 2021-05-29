@@ -16,6 +16,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
 $router->group(['prefix' => 'user'], function () use ($router) {
     
     $router->get    ('/data', 'UserController@index');

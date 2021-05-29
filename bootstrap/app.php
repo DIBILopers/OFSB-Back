@@ -29,6 +29,9 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
