@@ -15,6 +15,13 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
+            $table->string('meron_odd');
+            $table->string('wala_odd');
+            $table->string('winner');
+            $table->integer('match_number');
+            $table->integer('meron_total');
+            $table->integer('wala_total');
+            $table->integer('total_bet');
             $table->timestamps();
         });
     }
