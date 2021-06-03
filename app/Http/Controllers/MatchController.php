@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Matches;
+use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
@@ -45,19 +44,36 @@ class MatchController extends Controller
         return response(json_encode($data));
     }
 
-    public function next_match (Request $request) {
-        $curent_id = $request->current_id;
-        $current_match = $request->current_match;
+    public function next_match (Request $request, $id) {
+        $data = Matches::findOrFail($id);
+        if ( !is_null($data) ) {
+          $data->winner = $request->winner;
+          $data->is_current_match = false;
+          $data->save();
+          if( $data->save() ) {
+             $new_match = Matches::where('match_number', ++$request->current_match_number)->firstOrFail();
+             if ( !is_null($new_match) ) {
+                 $new_match->is_current_match = true;
+                 $new_match->save();
+                 $res = ['naka new', $new_match];
+             } else {
+                 $res = ['NO MORE MATCHES'];
+             }
+          } else {
+              $res = ['ERROR!'];
+          }
+        }
+        return response(json_encode($res));
     }
 
     public function edit_odd (Request $request, $id) {
-        $data = Matches::find($id);
-        print_r($request->all());
+        $data = Matches::findOrFail($id);
+        
         if (!is_null($data)) {
             $data->meron_odd = $request->meron_odd;
             $data->wala_odd = $request->wala_odd;
-            $data-save();
-            $res = $data->save();
+            $data->save();
+            $res = $data->save() == true ? $data : ['Error!'];
         } else {
             $res = ['Error!'];
         }

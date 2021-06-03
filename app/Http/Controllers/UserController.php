@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $post =Users::find($id);
+        $post =Users::findOrFail($id);
         print_r($request->all());
         $post->role = $request->role;
         $post->pin =  $request->pin;

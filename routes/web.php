@@ -33,6 +33,7 @@ $router->group(['prefix' => 'matches'], function () use ($router) {
     $router->post   ('/insert', 'MatchController@store');
     $router->post   ('/generate', 'MatchController@generate');
     $router->put    ('/edit-odd/{id}', 'MatchController@edit_odd');
+    $router->put    ('/next/{id}', 'MatchController@next_match');
     $router->delete('/data/{id}', 'MatchController@destroy');
     $router->delete('/thanos', 'MatchController@thanosx2');
 });
