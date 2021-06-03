@@ -21,17 +21,18 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     
     $router->get    ('/data', 'UserController@index');
     $router->get    ('/data/{id}', 'UserController@show');
-    $router->post   ('/data', 'UserController@store');
-    $router->put    ('/data', 'UserController@update');
+    $router->post   ('/store', 'UserController@store');
+    $router->patch    ('/update/{id}', 'UserController@update');
     $router->delete('/data/{id}', 'UserController@destroy');
 });
 $router->group(['prefix' => 'matches'], function () use ($router) {
     
     $router->get    ('/getdata', 'MatchController@index');
+    $router->get    ('/current', 'MatchController@get_current');
     // $router->get    ('/data/{id}', 'MatchController@show');
     $router->post   ('/insert', 'MatchController@store');
     $router->post   ('/generate', 'MatchController@generate');
-    $router->put    ('/data', 'MatchController@update');
+    $router->put    ('/edit-odd/{id}', 'MatchController@edit_odd');
     $router->delete('/data/{id}', 'MatchController@destroy');
     $router->delete('/thanos', 'MatchController@thanosx2');
 });
