@@ -43,6 +43,10 @@ class MatchController extends Controller
         $data = Matches::where('is_current_match', true)->first();
         return response(json_encode($data));
     }
+    public function get_recent () {
+        $data = Matches::where('winner', '!=', 'TBA')->orderBy('match_number', 'desc')->get();
+        return response(json_encode($data));
+    }
 
     public function next_match (Request $request, $id) {
         $data = Matches::findOrFail($id);

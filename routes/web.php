@@ -29,6 +29,7 @@ $router->group(['prefix' => 'matches'], function () use ($router) {
     
     $router->get    ('/getdata', 'MatchController@index');
     $router->get    ('/current', 'MatchController@get_current');
+    $router->get    ('/recent', 'MatchController@get_recent');
     // $router->get    ('/data/{id}', 'MatchController@show');
     $router->post   ('/insert', 'MatchController@store');
     $router->post   ('/generate', 'MatchController@generate');
