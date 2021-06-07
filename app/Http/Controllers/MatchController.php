@@ -8,7 +8,7 @@ class MatchController extends Controller
 {
     //
     public function index () {
-        $data = Matches::all();
+        $data = Matches::orderBy('match_number')->get();
         return response(json_encode($data));
     }
 
@@ -77,6 +77,24 @@ class MatchController extends Controller
             $data->meron_odd = $request->meron_odd;
             $data->wala_odd = $request->wala_odd;
             $data->save();
+            $res = $data->save() == true ? $data : ['Error!'];
+        } else {
+            $res = ['Error!'];
+        }
+        return response(json_encode($res));
+    }
+
+    public function add_bet (Request $request, $id) {
+        $data = Matches::findOrFail($id);
+        
+        if (!is_null($data)) {
+            if ($request->bet_side == 'MERON') {
+                $data->meron_total = ++$data->meron_total;
+                $data->total_bet = $data->total_bet + $request->bet_amount;
+            } else if ($request->bet_side == 'WALA') {
+                $data->wala_total = ++$data->wala_total;
+                $data->total_bet = $data->total_bet + $request->bet_amount;
+            }
             $res = $data->save() == true ? $data : ['Error!'];
         } else {
             $res = ['Error!'];
