@@ -13,7 +13,7 @@ class MatchController extends Controller
     }
 
     public function generate (Request $request) {
-        $pass_temp = 'kibs';
+        $pass_temp = 'sabong';
         if ($request->password == $pass_temp) {
             $data = [];
             for ($i=1; $i <= $request->number_of_matches; $i++) {
