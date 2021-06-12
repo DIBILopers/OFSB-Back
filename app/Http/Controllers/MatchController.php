@@ -25,7 +25,8 @@ class MatchController extends Controller
                     'meron_total' => 0,
                     'wala_total' => 0,
                     'total_bet' => 0,
-                    'is_current_match' => $i == 1 ? true : false
+                    'is_current_match' => $i == 1 ? true : false,
+                    'is_displayed' => false
                 ]);
             }
             $res = Matches::insert($data);
@@ -53,6 +54,7 @@ class MatchController extends Controller
         if ( !is_null($data) ) {
           $data->winner = $request->winner;
           $data->is_current_match = false;
+          $data->is_displayed = true;
           $data->save();
           if( $data->save() ) {
              $new_match = Matches::where('match_number', ++$request->current_match_number)->firstOrFail();
@@ -68,6 +70,12 @@ class MatchController extends Controller
           }
         }
         return response(json_encode($res));
+    }
+
+    public function is_displayed ($id) {
+        $data = Matches::findOrFail($id);
+        $data->is_displayed = false;
+        $data->save();
     }
 
     public function edit_odd (Request $request, $id) {

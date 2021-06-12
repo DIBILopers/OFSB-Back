@@ -23,6 +23,7 @@ class CreateMatchesTable extends Migration
             $table->integer('wala_total');
             $table->integer('total_bet');
             $table->boolean('is_current_match');
+            $table->boolean('is_displayed');
             $table->timestamps();
         });
     }
