@@ -23,6 +23,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
 
 
 $app->withFacades();

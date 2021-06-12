@@ -16,6 +16,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('print/test', 'PrintController@test');
 
 $router->group(['prefix' => 'user'], function () use ($router) {
     
