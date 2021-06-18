@@ -26,7 +26,8 @@ class MatchController extends Controller
                     'wala_total' => 0,
                     'total_bet' => 0,
                     'is_current_match' => $i == 1 ? true : false,
-                    'is_displayed' => false
+                    'is_displayed' => false,
+                    'disable_betting' => false
                 ]);
             }
             $res = Matches::insert($data);
@@ -108,6 +109,12 @@ class MatchController extends Controller
             $res = ['Error!'];
         }
         return response(json_encode($res));
+    }
+
+    public function start_match ($id) {
+        $data = Matches::findOrFail($id);
+        $data->disable_betting = true;
+        $data->save();
     }
 
     public function thanosx2 () {

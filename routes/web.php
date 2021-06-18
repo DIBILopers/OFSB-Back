@@ -38,6 +38,7 @@ $router->group(['prefix' => 'matches'], function () use ($router) {
     $router->put    ('/edit-odd/{id}', 'MatchController@edit_odd');
     $router->put   ('/add-bet/{id}', 'MatchController@add_bet');
     $router->put   ('/is-displayed/{id}', 'MatchController@is_displayed');
+    $router->put   ('/start-match/{id}', 'MatchController@start_match');
     $router->put    ('/next/{id}', 'MatchController@next_match');
     
     $router->delete('/data/{id}', 'MatchController@destroy');

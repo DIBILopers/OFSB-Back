@@ -24,6 +24,7 @@ class CreateMatchesTable extends Migration
             $table->integer('total_bet');
             $table->boolean('is_current_match');
             $table->boolean('is_displayed');
+            $table->boolean('disable_betting');
             $table->timestamps();
         });
     }
