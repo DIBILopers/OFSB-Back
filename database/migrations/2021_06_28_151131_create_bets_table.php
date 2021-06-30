@@ -13,16 +13,18 @@ class CreateBetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bets', function (Blueprint $table) {
+        Schema::create('bet', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->char('odd');
-            $table->timestamp('datetime');
-            $table->char('status');
-            $table->char('bet_amount');
-            $table->char('odd_amount');
+            $table->dateTime('datetime');
+            $table->integer('bet_prize');
+            $table->string('serial_number');
+            $table->string('bet_status');
+            $table->integer('match_id');
+            $table->integer('bet_amount');
+            $table->integer('bet_odds');
             $table->integer('cashier_id');
+            $table->string('bet_side');
         });
     }
 
