@@ -23,6 +23,10 @@ class MatchController extends Controller
                     'winner' => 'TBA',
                     'match_number' => $i, 
                     'meron_total' => 0,
+                    'meron_win_total' => 0,
+                    'wala_win_total' => 0,
+                    'meron_bet_total' => 0,
+                    'wala_bet_total' => 0,
                     'wala_total' => 0,
                     'total_bet' => 0,
                     'is_current_match' => $i == 1 ? true : false,
@@ -97,9 +101,13 @@ class MatchController extends Controller
         if (!is_null($data)) {
             if ($request->bet_side == 'MERON') {
                 $data->meron_total = ++$data->meron_total;
+                $data->meron_win_total = $data->meron_win_total + $request->total_payout;
+                $data->meron_bet_total = $data->meron_bet_total + $request->bet_amount;
                 $data->total_bet = $data->total_bet + $request->bet_amount;
             } else if ($request->bet_side == 'WALA') {
                 $data->wala_total = ++$data->wala_total;
+                $data->wala_win_total = $data->wala_win_total + $request->total_payout;
+                $data->wala_bet_total = $data->wala_bet_total + $request->bet_amount;
                 $data->total_bet = $data->total_bet + $request->bet_amount;
             }
             $res = $data->save() == true ? $data : ['Error!'];
