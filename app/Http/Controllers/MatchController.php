@@ -36,9 +36,7 @@ class MatchController extends Controller
             // $res = [$request->password];
         }
         
-
         return response(json_encode($res));
-
     }
 
     public function get_current () {
