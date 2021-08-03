@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'ofsb'),
+    'default' => 'ofsb',
 
     /*
     |--------------------------------------------------------------------------
@@ -39,13 +39,25 @@ return [
             'prefix' => env('DB_PREFIX', ''),
         ],
 
+        // 'ofsb' => [
+        //     'driver' => 'pgsql',
+        //     'host' => env('DB_HOST'),
+        //     'port' => env('DB_PORT'),
+        //     'database' => env('DB_DATABASE'),
+        //     'username' => env('DB_USERNAME'),
+        //     'password' => env('DB_PASSWORD'),
+        //     // 'charset' => 'utf8mb4',
+        //     'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+           
+        // ],
+
         'ofsb' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST'),
-            'port' => env('DB_PORT'),
-            'database' => env('DB_DATABASE'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
+            'host' => 'localhost',
+            'port' => 5432,
+            'database' => 'ofsb',
+            'username' => 'postgres',
+            'password' => 'postgres',
             // 'charset' => 'utf8mb4',
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
            

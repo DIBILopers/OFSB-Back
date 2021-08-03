@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Matches;
+use App\Models\Bet;
 use Illuminate\Http\Request;
 
 class MatchController extends Controller
@@ -125,5 +126,6 @@ class MatchController extends Controller
 
     public function thanosx2 () {
         Matches::truncate();
+        Bet::truncate();
     }
 }

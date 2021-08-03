@@ -26,8 +26,11 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->patch    ('/update/{id}', 'UserController@update');
     $router->delete('/data/{id}', 'UserController@destroy');
 });
+
 $router->group(['prefix' => 'matches'], function () use ($router) {
-    
+    $router->post    ('/record-bet', 'BetController@add');
+    $router->get    ('/index', 'BetController@index');
+
     $router->get    ('/getdata', 'MatchController@index');
     $router->get    ('/current', 'MatchController@get_current');
     $router->get    ('/recent', 'MatchController@get_recent');

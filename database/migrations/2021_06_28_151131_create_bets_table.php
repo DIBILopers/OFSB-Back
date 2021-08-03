@@ -17,14 +17,16 @@ class CreateBetsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->dateTime('datetime');
-            $table->integer('bet_prize');
-            $table->string('serial_number');
-            $table->string('bet_status');
-            $table->integer('match_id');
-            $table->integer('bet_amount');
-            $table->integer('bet_odds');
-            $table->integer('cashier_id');
+            $table->string('ticket_number');
+            $table->integer('match_number');
+            $table->string('match_winner');
             $table->string('bet_side');
+            $table->integer('match_odd');
+            $table->integer('bet_amount');
+            $table->integer('bet_prize');
+            $table->integer('total_payout');
+            $table->string('status');
+            $table->integer('cashier_id');
         });
     }
 
