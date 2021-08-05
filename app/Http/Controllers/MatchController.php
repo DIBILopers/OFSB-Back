@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Matches;
-use App\Models\Bet;
+use App\Models\Bets;
 use Illuminate\Http\Request;
 
 class MatchController extends Controller
@@ -54,7 +54,23 @@ class MatchController extends Controller
     }
 
     public function next_match (Request $request, $id) {
+        $bets = Bets::where('match_number', $request->current_match_number)->get();
+        if( !is_null($bets) ) {
+            foreach ($bets as $bet) {
+                $updateBet = Bets::findOrFail($bet->id);
+                // echo $updateBet;
+                $updateBet->match_winner = $request->winner;
+                if( $request->winner == 'DRAW' ) {
+                    $updateBet->status = 'Draw';
+                } else if ( $request->winner != $updateBet->bet_side ) {
+                    $updateBet->status = 'Lose';
+                }
+                $updateBet->save();
+            }
+        }
+
         $data = Matches::findOrFail($id);
+
         if ( !is_null($data) ) {
           $data->winner = $request->winner;
           $data->is_current_match = false;
@@ -71,8 +87,8 @@ class MatchController extends Controller
              }
           } else {
               $res = ['ERROR!'];
+            }
           }
-        }
         return response(json_encode($res));
     }
 
@@ -126,6 +142,6 @@ class MatchController extends Controller
 
     public function thanosx2 () {
         Matches::truncate();
-        Bet::truncate();
+        Bets::truncate();
     }
 }

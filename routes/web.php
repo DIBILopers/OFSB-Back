@@ -27,9 +27,14 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->delete('/data/{id}', 'UserController@destroy');
 });
 
-$router->group(['prefix' => 'matches'], function () use ($router) {
-    $router->post    ('/record-bet', 'BetController@add');
+$router->group(['prefix' => 'bets'], function () use ($router) {
+    
     $router->get    ('/index', 'BetController@index');
+    $router->post    ('/add', 'BetController@add');
+});
+
+$router->group(['prefix' => 'matches'], function () use ($router) {
+    
 
     $router->get    ('/getdata', 'MatchController@index');
     $router->get    ('/current', 'MatchController@get_current');

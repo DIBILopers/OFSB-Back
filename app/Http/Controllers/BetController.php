@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Bet;
+use App\Models\Bets;
 use Illuminate\Http\Request;
 
 class BetController extends Controller
 {
     //
     public function index () {
-        $data = Bet::orderBy('match_number')->get();
+        $data = Bets::orderBy('match_number')->get();
         return response(json_encode($data));
     }
 
-    public function add () {
-        $bet = new Bet;
+    public function add (Request $request) {
+        $bet = new Bets;
 
         $bet->ticket_number = $request->input('ticket_number');;
         $bet->match_number = $request->input('match_number');
