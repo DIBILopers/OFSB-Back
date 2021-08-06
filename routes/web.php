@@ -31,6 +31,7 @@ $router->group(['prefix' => 'bets'], function () use ($router) {
     
     $router->get    ('/index', 'BetController@index');
     $router->post    ('/add', 'BetController@add');
+    $router->put    ('/claim/{id}', 'BetController@claim');
 });
 
 $router->group(['prefix' => 'matches'], function () use ($router) {

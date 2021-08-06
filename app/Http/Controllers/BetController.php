@@ -31,4 +31,18 @@ class BetController extends Controller
             return response(json_encode($bet));
         }
     }
+
+    public function claim($id) {
+        $bet = Bets::findOrFail($id);
+        if ( !is_null($bet) ) {
+            $bet->status = 'Claimed';
+            if( $bet->save() )
+            {
+                return response(json_encode($bet));
+            } else {
+                $res = ['Error!'];
+                return response(json_encode($res));
+            }
+        }
+    }
 }
